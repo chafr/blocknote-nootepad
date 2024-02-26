@@ -29,9 +29,7 @@ function App() {
 
     return <div className="notepad">
         <div className="notepad-active_note">
-            {notes.some(({ isActive }) => isActive) && <>
-            <input type="text" value={notes.find(({ isActive }) => isActive)?.name} onChange={(e) => activeNoteChangeHandler('name', e.target.value)}/>
-            <textarea value={notes.find(({ isActive }) => isActive)?.text} onChange={(e) => activeNoteChangeHandler('text', e.target.value)}/></>}
+            <Note note={notes.find(({ isActive }) => isActive)} activeNoteChangeHandler={activeNoteChangeHandler}/>
         </div>
         <aside className="notepad-aside">
             <button className="notepad-aside-create_note_btn"

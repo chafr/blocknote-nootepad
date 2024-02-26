@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React from 'react';
 
-function Note({ note }) {
-    console.log(note)
+function Note({ note, activeNoteChangeHandler }) {
+    if (!note) {
+        return;
+    }
 
     return <>
-        <input type="text" value={note.name} onChange={(e) => e.target.value}/>
-        <textarea value={note.text} onChange={(e) => e.target.value}/>
+        <input type="text" value={note.name} onChange={(e) => activeNoteChangeHandler('name', e.target.value)}/>
+        <textarea value={note.text} onChange={(e) => activeNoteChangeHandler('text', e.target.value)}/>
     </>
 }
 
