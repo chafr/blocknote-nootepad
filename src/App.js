@@ -2,18 +2,10 @@ import './App.css';
 import React, {useState} from "react";
 import uuid from 'react-uuid';
 import Note from './components/Note';
+import AsideList from './components/AsideList';
 
 function App() {
     const [notes, setNotes] = useState([]);
-
-    function noteBtnClickHandler(id) {
-        const copy = [...notes];
-        copy.map((note) => {
-            note.isActive = note.id === id;
-            return note;
-        });
-        setNotes(copy);
-    }
 
     function activeNoteChangeHandler(key, value) {
         const copy = [...notes].map((note) => {
@@ -36,10 +28,7 @@ function App() {
                     onClick={() => setNotes([{ id: uuid(), name: 'Новая заметка', date: new Date(), text: '', isActive: false }, ...notes])}>
                 Создать заметку</button>
             <ol className="notepad-aside-list">
-                {notes.map(({ id, name, date }) => <li key={id}>
-                    <button onClick={() => noteBtnClickHandler(id)}>{name}</button>
-                    <div>{date.toLocaleString()}</div>
-                </li>)}
+                <AsideList notes={notes} setNotes={setNotes}/>
             </ol>
         </aside>
     </div>
