@@ -6,13 +6,13 @@
   padding: 24px;
 }
 
-.notepad-active_note{
+.notepad-active_note {
   display: grid;
   grid-template-rows: 40px 200px;
   gap: 16px;
 }
 
-.notepad-aside-list{
+.notepad-aside-list {
   display: grid;
   gap: 8px;
 }

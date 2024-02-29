@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from "react";
 import uuid from 'react-uuid';
-import Note from './components/Note';
+import ActiveNote from './components/ActiveNote';
 import AsideList from './components/AsideList';
 
 function App() {
@@ -20,16 +20,12 @@ function App() {
     }
 
     return <div className="notepad">
-        <div className="notepad-active_note">
-            <Note note={notes.find(({ isActive }) => isActive)} activeNoteChangeHandler={activeNoteChangeHandler}/>
-        </div>
+        <ActiveNote note={notes.find(({ isActive }) => isActive)} activeNoteChangeHandler={activeNoteChangeHandler}/>
         <aside className="notepad-aside">
             <button className="notepad-aside-create_note_btn"
                     onClick={() => setNotes([{ id: uuid(), name: 'Новая заметка', date: new Date(), text: '', isActive: false }, ...notes])}>
                 Создать заметку</button>
-            <ol className="notepad-aside-list">
-                <AsideList notes={notes} setNotes={setNotes}/>
-            </ol>
+            <AsideList notes={notes} setNotes={setNotes}/>
         </aside>
     </div>
 }

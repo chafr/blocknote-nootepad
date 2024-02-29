@@ -12,8 +12,9 @@ function AsideList({ notes, setNotes }) {
         setNotes(copy);
     }
 
-    return notes.map(({ id, name, date }) =>
-        <AsideNote id={id} name={name} date={date} noteBtnClickHandler={noteBtnClickHandler}/>)
+    return <ol className="notepad-aside-list">
+        {notes.map(({ id, name, date }) => <AsideNote id={id} name={name} date={date} noteBtnClickHandler={noteBtnClickHandler}/>)}
+    </ol>
 }
 
 export default AsideList;
