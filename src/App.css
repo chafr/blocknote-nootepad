@@ -16,3 +16,11 @@
   display: grid;
   gap: 8px;
 }
+
+.notepad-aside-search{
+  display: grid;
+}
+
+.notepad-aside-create_note_btn{
+  margin-top: 64px;
+}
