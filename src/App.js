@@ -1,13 +1,17 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import uuid from 'react-uuid';
 import ActiveNote from './components/ActiveNote';
 import AsideList from './components/AsideList';
 import Search from './components/Search';
 
 function App() {
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('bn-notes')) || []);
     const [filteredNotes, setFilteredNotes] = useState([]);
+
+    useEffect(() => {
+        localStorage.setItem('bn-notes', JSON.stringify(notes));
+    }, [notes]);
 
     function activeNoteChangeHandler(key, value) {
         const copy = [...notes].map((note) => {
@@ -26,7 +30,7 @@ function App() {
         <aside className="notepad-aside">
             <Search notes={notes} setFilteredNotes={setFilteredNotes}/>
             <button className="notepad-aside-create_note_btn"
-                    onClick={() => setNotes([{ id: uuid(), name: 'Новая заметка', date: new Date(), text: '', isActive: false }, ...notes])}>
+                    onClick={() => setNotes([{ id: uuid(), name: 'Новая заметка', date: new Date().toLocaleString(), text: '', isActive: false }, ...notes])}>
                 Создать заметку</button>
             <AsideList notes={filteredNotes} setNotes={setNotes}/>
         </aside>
