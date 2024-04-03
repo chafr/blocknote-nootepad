@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 
 function Search({ notes, setFilteredNotes }) {
-    const [titleInputValue, setTitleInputValue] = useState('');
-    if (titleInputValue === '') {
+    const [inputValue, setInputValue] = useState('');
+    if (inputValue === '') {
         setFilteredNotes(notes);
     }
 
     function titleInputChangeHandler(e) {
         const newValue = e.target.value;
-        setTitleInputValue(newValue);
+        setInputValue(newValue);
         if (newValue === '') {
             setFilteredNotes(notes);
             return;
@@ -19,13 +19,15 @@ function Search({ notes, setFilteredNotes }) {
             .map((item) => item.toLowerCase())
             .some((item) => arr2.includes(item.toLowerCase()));
 
-        const filteredNotes = notes.filter(({ name }) => checkIntersection(splitInWords(newValue), splitInWords(name)));
+        const filteredNotes = notes.filter(({ name, text }) => checkIntersection(
+            splitInWords(newValue), [...splitInWords(name), ...splitInWords(text)]
+        ));
         setFilteredNotes(filteredNotes);
     }
     
     return <div className="notepad-aside-search">
         Поиск
-        <input type="text" value={titleInputValue} onChange={titleInputChangeHandler} placeholder="Имя"/>
+        <input type="text" value={inputValue} onChange={titleInputChangeHandler} placeholder="Имя и/или описание"/>
     </div>
 }
 
