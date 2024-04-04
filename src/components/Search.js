@@ -1,4 +1,10 @@
 import React, {useState} from 'react';
+import styled from "styled-components";
+
+
+const StyledSearch = styled.div`
+    display: grid;
+`;
 
 function Search({ notes, setFilteredNotes }) {
     const [inputValue, setInputValue] = useState('');
@@ -25,10 +31,10 @@ function Search({ notes, setFilteredNotes }) {
         setFilteredNotes(filteredNotes);
     }
     
-    return <div className="notepad-aside-search">
+    return <StyledSearch>
         Поиск
         <input type="text" value={inputValue} onChange={titleInputChangeHandler} placeholder="Имя и/или описание"/>
-    </div>
+    </StyledSearch>
 }
 
 export default Search;

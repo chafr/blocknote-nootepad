@@ -1,6 +1,12 @@
 import React from 'react';
 import AsideNote from "./AsideNote";
+import styled from "styled-components";
 
+
+const StyledAsideList = styled.ol`
+    display: grid;
+    gap: 8px;
+`;
 
 function AsideList({ notes, setNotes }) {
     function noteBtnClickHandler(id) {
@@ -12,9 +18,9 @@ function AsideList({ notes, setNotes }) {
         setNotes(copy);
     }
 
-    return <ol className="notepad-aside-list">
+    return <StyledAsideList>
         {notes.map(({ id, name, date }) => <AsideNote id={id} name={name} date={date} noteBtnClickHandler={noteBtnClickHandler}/>)}
-    </ol>
+    </StyledAsideList>
 }
 
 export default AsideList;
