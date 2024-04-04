@@ -17,7 +17,7 @@ function App() {
         const copy = [...notes].map((note) => {
             if (note.isActive) {
                 note[key] = value;
-                note.date = new Date();
+                note.date = new Date().toLocaleString();
             }
 
             return note;
